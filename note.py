@@ -99,5 +99,66 @@
 #     1.random.randint(a,b) 隨機生成[a,b]任意整數
 #     2.random.random()隨機生成[0,1)任意浮點數
 #         補：random.random()*n 即可生成[0,n)任意浮點數
+#     3.random.shuffle(list名稱) 隨機打亂list(注意不能打亂str，只能打亂list)
 # 列表 list(為一種資料型態，可以存多筆資料):
-# 
+#     1.表示方法:list名稱 = [a, b, c, ...]
+#     2.list名稱[n] list中第n+1筆資料
+#     3.list名稱[-n] list中倒數第n筆資料
+#     4.列表中的資料型態可以不一致:(EX:[1, 2, true, "HI"])
+#     5.list名稱.append(欲加入資料) 加入新資料
+#     6.list名稱.count(list中某資料) 可得知list中某資料共出現幾次
+#     7.list名稱.insert(a, b) 在第a筆資料插入b這筆新資料
+#     8.list名稱.remove(b) 刪除list中第一筆出現的b
+# 字串分割:字串名稱.split("欲分割的符號")
+# 取得字串長度:len(字串名稱)
+# 取得list中任意一筆資料:random.randint(0, len(字串名稱)-1)
+# nested list巢狀列表:(列表中的列表)
+#     EX:[[1,2,3],2,4,7,[2,3,7],6]
+#     1.list名稱[n][m] 取得第n筆資料中的第m筆資料
+#     2.矩陣:巢狀列表每一筆資料的大小都一樣
+#        EX:[
+#            [1,2,3],
+#            [4,5,6],
+#            [7,8,9]
+#           ]
+#     3.矩陣念法:n*m指的是n row行, m colunm列(程設裡面為 直列橫行)
+#     4.list名稱[n][m] 取得第n row 第m colunm 資料
+#     5.取得n為列表的值:list名稱[][][]...共n個中括號
+# """內容""" 這樣換行時直接按ENTER 就會自動幫你換行
+# while迴圈:重複執行直到條件判斷為false
+#     1.寫法:while 條件判斷:
+#               要重複執行的程式
+# for迴圈:可以依序一一取字串中的每一個字or list的每一筆資料，並重複執行某程式碼
+#     1.寫法:for item in 字串或list:(item為一一取出的資料暫存位置，不一定叫item也沒關係)
+#               要重複執行的程式
+#     2.常與range()搭配
+#       寫法:for i in range(a, b):(重複執行b-a次)
+#               要重複執行的程式
+# range(n, m)函數:
+#     1.[n, n+1, ..., m-1] 注意!不包函m
+#     2.range(n, m, t)第三個參數t代表的是每一個數之間的間隔大小
+# list(字串) 把字串逐字變列表
+# 字典 dictionary:輸入"key"配對到一個"value"
+#     (EX:輸入:"蘋果"，配對到"apple")
+#     1.創建字典寫法:
+#          字典名稱 = {
+#               key1: value1, 
+#               key2, value2
+#               ...
+#                }
+#     2.取字典值:字典名稱[key名稱]
+#     3.字典不對型態設限制
+#     4.更改/新增字典的值:字典名稱[key名稱] = 值
+#     5.與for loop的搭配使用:
+#         for item in 字典名稱:
+#             print(item)                取得所有key
+#             print(字典名稱[item])           取得所有value
+#     6.如果key所對應的value為list型態，取得該list第n筆資料方式為:
+#         字典名稱[key][n-1]
+#     7.如果key所對應的value為另一字典，取得另一字典資料方式為:
+#         字典名稱[原字典key][另一字典的key]
+#     8.list中的資料型態可以為字典:
+#         (EX:[1, 2, {key1: value1, key2: value2,...}, 5, 6])
+#         取得方式:list名稱[2][key]
+#     9.回傳所有keys:字典名稱.keys() 注意回傳結果不是list
+#     10.回傳所有values:字典名稱.values() 注意回傳結果不是list
