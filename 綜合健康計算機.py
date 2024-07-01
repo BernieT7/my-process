@@ -1,3 +1,6 @@
+# 這是一個可以計算BMI、BMR、TDEE的的綜合計算機
+
+# BMI、BMR、TDEE的計算函式
 def get_bmi(height, weight):
     BMI = weight / ((height / 100) ** 2)
     BMI = round(BMI, 1)
@@ -30,14 +33,18 @@ def get_tdee(sex, height, weight, age, times):
         TDEE = get_bmr(sex, height, weight, age) * 1.9
         return TDEE
 
+# 與使用者互動，了解使用者需要使用何項功能
 print("歡迎使用綜合健康計算機~")
 print("(1)計算BMI\n(2)計算基礎代謝率BMR\n(3)計算總熱量消耗TDEE")
 item = input("請選擇要計算的項目(輸入1 or 2 or3):")
+
+# 計算BMI
 if item == "1":
     height = float(input("請輸入您的身高(公分)："))
     weight = float(input("請輸入您的體重："))
     result = get_bmi(height, weight)
     print(result)
+# 計算BMR
 elif item == "2":
     sex = input("請輸入您的性別(輸入F or M)")
     height = float(input("請輸入您的身高(公分)："))
@@ -45,6 +52,7 @@ elif item == "2":
     age = int(input("請輸入您的年齡："))
     result = get_bmr(sex, height, weight, age)
     print(result)
+# 計算TDEE
 else:
     sex = input("請輸入您的性別(輸入F or M):")
     height = float(input("請輸入您的身高(公分)："))
