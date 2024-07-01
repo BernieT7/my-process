@@ -93,3 +93,11 @@
 #     5.避免參數型態錯誤:
 #         if type(a) != int or type(b) != int or type(c) != int:
 #             return "請輸入整數"  
+# module 模組：(就是把許多函數變成一個工具箱存入另一個檔案，要用的時候呼叫他就好，這樣主檔案的畫面會比較乾淨)
+#     呼叫方式：import 模組名--->模組名.模組內函式(參數)
+# random 模組
+#     1.random.randint(a,b) 隨機生成[a,b]任意整數
+#     2.random.random()隨機生成[0,1)任意浮點數
+#         補：random.random()*n 即可生成[0,n)任意浮點數
+# 列表 list(為一種資料型態，可以存多筆資料):
+# 
