@@ -204,3 +204,30 @@
 #     indent可以幫我們自動換行，不需要也可以不用寫
 # x = json.loads(file.read()) 把json格式轉換成python原格式
 # if x in y: 可以檢驗x是否在y裡，有的話回傳True，否則傳False
+# class 類別:可以用來創建自己的資料型態
+#     寫法: class 資料型態名稱:
+#               pass
+# pass:當你的class或是函數內容什麼都沒有時就要加個pass
+# object 物件:根據類別class定義出的東西  
+#           x = 資料型態名稱() ----->創建資料
+#           x.屬性1 = value1
+#           x.屬性2 = value2
+#               .
+#               .
+#               .
+# 不過以上寫法非常沒效率，用 __init__函數會比較好
+# __init__函式:創建資料的時候建會呼叫他
+#     寫法: class x:
+#               def __init__(self, 屬性1, 屬性2, 屬性3, ...)
+#                   self.屬性1 = 屬性1
+#                   self.屬性2 = 屬性2
+#                   self.屬性3 = 屬性3
+#                       .
+#                       .
+#                       .
+#           y = x(屬性1, 屬性2, 屬性3) 創建資料y
+# method 方法:在class裡面寫的函式
+#     寫法: class x:
+#              def method(self, 參數1, ...) 
+#                   content
+#              y.method(參數1, ...) 使用該method
