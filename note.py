@@ -277,7 +277,7 @@
 #     10.y = Buttom(text="按鈕名稱", font=("", ), command=指令名稱) 按按鈕就會有功能
 #          def 指令名稱
 #              指令
-#     11.z = entry(width=寬度, font("", ))  創建對話框
+#     11.z = Entry(width=寬度, font("", ))  創建對話框
 #        z.pack(side="位置")  對話框位置
 #     12.def use_spinbox():
 #            print(a.get())
@@ -308,3 +308,5 @@
 # 元件的原點也在左上角，要改變的話這樣寫:name.place(anchor="center", x=n, y=m) 元件原點改為中心點
 # name.grid(row=n, column=m) 把name放在第n行,第m列
 # 利用grid排列要注意，他會把元件黏在一起，元件之間不會有空的row或column
+# entry的值如果要轉換成int or float，只能在另一個函數轉，函數外會轉不了
+# .get()所取得的值，型態為str
