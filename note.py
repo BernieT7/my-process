@@ -172,8 +172,35 @@
 #         注意:從內部修改全域變數是一件危險的事，不建議這麼做
 # 全域變數:函式外部的變數，不管哪裡都有效
 #     1.for, while, if, ...內所定義的變數皆為全域
-# break 強制跳出迴圈
-# continue 強制進入迴圈
-#     遇到continue會直接進入下一次迴圈，continue下面的程式就不會再進行了
-# 判斷字串是否為整數:字串名稱.isdigit()
-#     如果字串為整數，會回傳true；否則回傳false
+# break:迴圈中遇到break會直接跳出迴圈
+# continue:迴圈中遇到continue會直接進入下一次迴圈
+#     該次迴圈中continue以下的程式碼均不執行
+# 檢驗字串是否為整數:字串名稱.isdigit()
+#     如果字串為整數，回傳true；否則回傳false
+# file = open("檔案路徑", "模式") 開啟檔案
+#     模式有三種 : r(讀取), w(覆寫), a(在原先檔案後新增資料)
+# 關於"r"模式:
+#     1.file.read() 讀取
+#     2.file.readline() 讀取一行(從第一行開始往下讀)
+#     3.for line in file:
+#          print(line)       這樣就可以一行一行讀出來
+#     4.讀取到的會是字串喔
+# 關於"w"模式:
+#     1.file.write("覆寫內容") 只能是字串!
+# 關於"a"模式:
+#     1.file.write("欲加入新資料") 只能是字串!
+# open("檔案路徑", "模式", encoding="utf-8")這樣就會支援中文
+# file.close() 關閉檔案
+#     一定要關閉，不然會消耗電腦資源
+# with open( , , ) as file: 這樣寫就不用close
+# 絕對路徑:從電腦最初始位置寫到檔案名稱 EX:"C:\Users\user\learn\pythonProject\111.txt"
+#     注意:\要改成/
+# 相對路徑:從目前程式位置延伸 EX:(C:\Users\user\learn\pythonProject)目前程式位置 + \111.txt
+# 寫絕對路徑一定可以，寫相對路徑的話111.txt與需要用111.txt的程式需要在同一個資料夾才能用
+# "../"可以回到上一個資料夾 EX:"../../111.txt"回到前兩個資料夾的111.txt
+# import json 此為json模組
+# json是一種檔案格式
+# file.write(json.dumps(欲傳送資料, indent = 縮排格數)) 把python原格式轉換成json格式
+#     indent可以幫我們自動換行，不需要也可以不用寫
+# x = json.loads(file.read()) 把json格式轉換成python原格式
+# if x in y: 可以檢驗x是否在y裡，有的話回傳True，否則傳False

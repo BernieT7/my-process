@@ -1,0 +1,14 @@
+{
+    "google": {
+        "account": "tes",
+        "password": "test"
+    },
+    "fb": {
+        "account": "ok",
+        "password": "no"
+    },
+    "cool": {
+        "account": "fb",
+        "password": "ig"
+    }
+}
