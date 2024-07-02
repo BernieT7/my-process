@@ -100,6 +100,7 @@
 #     2.random.random()隨機生成[0,1)任意浮點數
 #         補：random.random()*n 即可生成[0,n)任意浮點數
 #     3.random.shuffle(list名稱) 隨機打亂list(注意不能打亂str，只能打亂list)
+#     4.random.sample(list名稱, n) 從list中隨機挑出n筆資料
 # 列表 list(為一種資料型態，可以存多筆資料):
 #     1.表示方法:list名稱 = [a, b, c, ...]
 #     2.list名稱[n] list中第n+1筆資料
@@ -231,3 +232,8 @@
 #              def method(self, 參數1, ...) 
 #                   content
 #              y.method(參數1, ...) 使用該method
+# 模組引入:
+#     1.import f模組 (as f)
+#         f.f的函式()       一定要呼叫
+#     2.from f模組 import f模組的函式1, 函式2, ...
+#         f的函式()         前面不用寫名字
