@@ -234,6 +234,77 @@
 #              y.method(參數1, ...) 使用該method
 # 模組引入:
 #     1.import f模組 (as f)
-#         f.f的函式()       一定要呼叫
+#       f.f的函式()       一定要呼叫
 #     2.from f模組 import f模組的函式1, 函式2, ...
-#         f的函式()         前面不用寫名字
+#       f的函式()         前面不用寫名字
+# package 套件:把許多模組裝在同一個資料夾
+#     1.資料夾內必須包含__init__.py
+#     2.引入套件中模組:
+#         (1)import p套件.f模組 (as f)
+#            p套件.f模組.f的函式()
+#         (2)from 套件 import 模組 (as f)
+#            p套件.f模組.f的函式()
+#     3.import 套件    會引入__init__
+# subpackage 子套件:套件中的套件
+#     1.資料夾內必須包含__init__.py
+#     2.引入子套件中模組:
+#         import p套件.s子套件.f模組 (as f)
+#         p套件.子套件.f模組.f的函式()
+#     3.import 套件.子套件    會引入__init__
+# tuple元組:跟list很像，可以存放多筆資料
+#     寫法:(1, 2, 3, ...)
+#     與list的差異:
+#         1.元組為小括號
+#         2.元組一但被創建就無法被修改
+# tkinter 為一模組(套件):可以創造GUI程式，也就是圖形介面程式
+#     1.寫法:from tkinter import * 
+#          window = Tk()        -------------創建一個視窗   
+#          對這個視窗的指令要在window = Tk()及window.mainloop()中間
+#          window.mainloop()
+#     2.window.title("圖形名字") 設定圖形名稱 
+#     3.window.geometry("寬x高") 設定圖形寬跟高
+#     4.window.maxsize(width="寬度上限", height="高度上限") 設定圖寬高上限
+#     5.window.minsize(width="寬度下限", height="高度下限") 設定圖寬高下限
+#     6.window.resizable(False, False) 寬高皆無法調整
+#     7.x = Label(text="文字", font=("字體", 字大小)) 在視窗上寫字
+#       x.pack(side="位置")    字的位置
+#       位置可為top, left, right, bottom
+#     8.更新設定寫法:
+#          (1)x["想更新的設定"] = 更新內容
+#          (2)x.config(想更新的設定1 = 更新內容,想更新的設定2 = 更新內容, ...)
+#     9.y = Buttom(text="按鈕名稱", font=("", )) 創建按鈕
+#       y.pack(side="位置") 按鈕位置
+#     10.y = Buttom(text="按鈕名稱", font=("", ), command=指令名稱) 按按鈕就會有功能
+#          def 指令名稱
+#              指令
+#     11.z = entry(width=寬度, font("", ))  創建對話框
+#        z.pack(side="位置")  對話框位置
+#     12.def use_spinbox():
+#            print(a.get())
+#        a = Spinbox(from=n, to=m, width=寬度, command=use_spinbox)   創建範圍n到m的輸入框
+#        a.pack()
+#     13.def use_scale(value):
+#            print(value)
+#        b = Scale(from=n, to=m, command=use_scale)   創建範圍n到m拉桿 
+#        b.pack()
+#     14.def use_checkbuttom():
+#            print(check.get())
+#        check = IntVar()    有打勾IntVar()回傳1；否則IntVar()回傳0
+#        c = Checkbuttom(text="框框名稱", variable=check, font=("", ), command=use_checkbuttom) 創建打勾框框
+#        c.pack()
+#     15.def use_radiobuttom():
+#            print(radio.get())
+#        radio = IntVar()
+#        d1 = Radiobuttom(text="選擇1", value=1, variable=radio, font=("", ), command=use_checkbuttom) 創建選擇點點1
+#        d2 = Radiobuttom(text="選擇2", value=2, variable=radio, font=("", ), command=use_checkbuttom) 創建選擇點點2
+#        d1.pack()
+#        d2.pack()
+# pack()括號內的排版功能
+#     1.padx=左右間格數
+#     2.pady=上下間格數
+#     3.side="位置"
+# name.place(x=n,y=m) 把name放在x=n,y=m
+# 注意，視窗的原點在左上角，x軸向右為正，y軸向下為正
+# 元件的原點也在左上角，要改變的話這樣寫:name.place(anchor="center", x=n, y=m) 元件原點改為中心點
+# name.grid(row=n, column=m) 把name放在第n行,第m列
+# 利用grid排列要注意，他會把元件黏在一起，元件之間不會有空的row或column
