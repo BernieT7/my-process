@@ -1,17 +1,22 @@
 from tkinter import *
+from tkinter import messagebox
 
 
 def calculation():
-    num1 = float(height.get())
-    num2 = float(weight.get())
-    bmi = round(num2/((num1/100)**2), 2)
-    my_bmi["text"] = f"您的BMI:{bmi}"
+    try:
+        num1 = float(height.get())
+        num2 = float(weight.get())
+    except ValueError:
+        messagebox.showerror(title="輸入錯誤", message="亂輸入不計算")
+    else:
+        bmi = round(num2 / ((num1 / 100) ** 2), 2)
+        my_bmi["text"] = f"您的BMI:{bmi}"
 
 
 window = Tk()
 window.title("BMI計算機")
 window.geometry("300x300")
-window.config(padx=50,pady=50)
+window.config(padx=50, pady=50)
 
 label_height = Label(text="身高")
 label_height.grid(row=0, column=0)

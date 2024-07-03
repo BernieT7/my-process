@@ -272,9 +272,9 @@
 #     8.更新設定寫法:
 #          (1)x["想更新的設定"] = 更新內容
 #          (2)x.config(想更新的設定1 = 更新內容,想更新的設定2 = 更新內容, ...)
-#     9.y = Buttom(text="按鈕名稱", font=("", )) 創建按鈕
+#     9.y = Button(text="按鈕名稱", font=("", )) 創建按鈕
 #       y.pack(side="位置") 按鈕位置
-#     10.y = Buttom(text="按鈕名稱", font=("", ), command=指令名稱) 按按鈕就會有功能
+#     10.y = Button(text="按鈕名稱", font=("", ), command=指令名稱) 按按鈕就會有功能
 #          def 指令名稱
 #              指令
 #     11.z = Entry(width=寬度, font("", ))  創建對話框
@@ -299,14 +299,23 @@
 #        d2 = Radiobuttom(text="選擇2", value=2, variable=radio, font=("", ), command=use_checkbuttom) 創建選擇點點2
 #        d1.pack()
 #        d2.pack()
-# pack()括號內的排版功能
-#     1.padx=左右間格數
-#     2.pady=上下間格數
-#     3.side="位置"
+#     16.pack()括號內的排版功能
+#        1.padx=左右間格數
+#        2.pady=上下間格數
+#        3.side="位置"
+#     17.from tkinter import messagebox
+#        (1)messagebox.showinfo(title="標題", message="內容")       創建訊息框
+#        (2)messagebox.showerror(title="標題", message="內容")      錯誤訊息框
+#        (3)messagebox.showwarning(title="標題", message="內容")    警告訊息框
+#        (4)messagebox.askyesno(title="標題", message="內容")       詢問要或不要
+#        (5)messagebox.askokcancel(title="標題", message="內容")    詢問確認或取消
+#        (6)messagebox.askretrycancel(title="標題", message="內容") 詢問重試或取消
+#     18.name.delete(n,m)  可以把輸入框的訊息從第n位到第m-1位刪除
 # name.place(x=n,y=m) 把name放在x=n,y=m
 # 注意，視窗的原點在左上角，x軸向右為正，y軸向下為正
 # 元件的原點也在左上角，要改變的話這樣寫:name.place(anchor="center", x=n, y=m) 元件原點改為中心點
 # name.grid(row=n, column=m) 把name放在第n行,第m列
+# name.grid(row=n, column=m, columnspan=t) columnspan=n會使元件往右佔t格
 # 利用grid排列要注意，他會把元件黏在一起，元件之間不會有空的row或column
 # entry的值如果要轉換成int or float，只能在另一個函數轉，函數外會轉不了
 # .get()所取得的值，型態為str
@@ -325,3 +334,33 @@
 #     1.寫法:def func(**num):        變數前加上**就可以一次傳入多個指定參數，並且這些參數會是字典的型態
 # 
 #            func(num1=1, num2=2, num3=3, ...)      型態:字典(key=value)
+#     2.可以與一般變數混著用:def func(a, b, **num):
+# 第三方套件:寫好的套件放到網路上給大家公開使用
+# 搜尋第三方套件:
+#     1.步驟:google搜尋pypi---->在pypi上搜尋要安裝的第三方套件
+#     2.terminal指令: 在terminal輸入
+#            (1)pip install 欲安裝套件
+#            (2)pip uninstall 欲刪除套件
+# tkinter設定元件顏色:bg設定元件背景顏色,fg設定文字顏色
+#     1.寫法:x = Label(text="", font=(" ", ), bg="blue", fg="green")
+#     2.不一定要寫顏色名字，可以寫顏色編碼(上網找色碼表)
+# 第三方套件pillow:可以為視窗加入圖片
+#     1.引入:from PIL import ImageTk
+#     2.pho = ImageTk.PhotoImage(file="欲上傳圖片")        上傳圖片
+#     3.can = Canvas(width=寬, height=高, bg="")           設定畫布
+#     4.can.create_image(寬的中心, 高的中心, image=pho)     在畫布上畫出圖片
+#     5.can.pack()                                         圖片位置
+#     6.在Canvas加入參數highlightthickness 可以把圖片白邊去除
+#     7.window.iconphoto(True, 表圖片的變數)  把視窗名稱旁的圖片改掉
+# 錯誤處理:
+#     1.寫法:try:
+#                code 1
+#            except:
+#                code2        如果code1發生錯誤就執行code2
+#     2.except也可以只針對某錯誤類型做處理:
+#       寫法:except 錯誤類型
+#       補充:印出錯誤訊息:except 錯誤類型 as x:
+#                               print(x)
+#     3.可以有很多個except
+#     4.else: 如果try沒有發生錯誤了就會執行else的程式碼
+#     5.finally: 不管try有沒有發生錯誤了都會執行finally的程式碼
