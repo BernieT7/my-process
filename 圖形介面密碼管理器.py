@@ -16,6 +16,8 @@ def get_dic():
             return {}
         else:
             return json.loads(dic)
+
+
 def account_management():
     if enter_name.get() == "" or enter_acc.get() == "" or enter_code.get() == "":
         messagebox.showerror(title="新增失敗", message="輸入框不可為空")
@@ -38,12 +40,12 @@ def account_management():
 
 def search():
     accounts = get_dic()
-        
-    name = enter_name.get()
-    if name in accounts.keys():
-        account = accounts[name]["account"]
-        password = accounts[name]["password"]
-        messagebox.showinfo(title=name, message=f"帳號:{account}\n密碼:{password}")
+
+    a = enter_name.get()
+    if a in accounts.keys():
+        account = accounts[a]["account"]
+        password = accounts[a]["password"]
+        messagebox.showinfo(title=a, message=f"帳號:{account}\n密碼:{password}")
     else:
         messagebox.showwarning(title="搜尋失敗", message="無此帳號名稱")
 
