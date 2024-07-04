@@ -232,6 +232,23 @@
 #              def method(self, 參數1, ...) 
 #                   content
 #              y.method(參數1, ...) 使用該method
+# inheritance繼承:類別跟類別之間的屬性及方法可以繼承
+#    1.例如:class2繼承了class1，class2不用定義就有class1的屬性以及方法
+#    2.寫法:class 1:
+#               def __init__(self, name, age):
+#               def method():
+#           class 2(1):
+#               pass
+#    3.class2可以直接覆寫class1的內容
+#    4.若是要在原class1有的屬性下新增屬性:
+#           class 2(1):
+#               def __init__(self, name, age, score):
+#                   1.__init__(self, name, age)
+#------------------------也可以這樣寫------------------------
+#                   super.__init__()
+#                   self.score = score
+# 類別與類別之間若是有重疊的屬性及方法就可以使用繼承
+# 類別的概念，是可以創建一個自己的類別並自己對自己做改變，如果不是這種情況就要另外在main寫函式    
 # 模組引入:
 #     1.import f模組 (as f)
 #       f.f的函式()       一定要呼叫
@@ -256,6 +273,7 @@
 #     與list的差異:
 #         1.元組為小括號
 #         2.元組一但被創建就無法被修改
+# 字母都是大寫的變數名稱，表示該變數不能更改
 # tkinter 為一模組(套件):可以創造GUI程式，也就是圖形介面程式
 #     1.寫法:from tkinter import * 
 #          window = Tk()        -------------創建一個視窗   
@@ -364,3 +382,74 @@
 #     3.可以有很多個except
 #     4.else: 如果try沒有發生錯誤了就會執行else的程式碼
 #     5.finally: 不管try有沒有發生錯誤了都會執行finally的程式碼
+# 發起錯誤:raise 錯誤類型("錯誤訊息")
+# .get()不能直接用，要先用其他變數接才能用
+# 製作動畫遊戲第三方套件pygame:
+#     1.寫法:import pygame
+#            pygame.init()
+#            window = pygame.display.set_mode((寬,高))   創建遊戲介面      -------------創建一個遊戲介面      
+#            pygame.display.set_caption("標題")
+#            run = True
+#            FPS = 60                   一秒更新60次
+#            clock = pygame.time.Clock() 創建時鐘
+#            while run:
+#               clock.tick(FPS)         限制一秒內迴圈最多只會執行幾次
+#               #取得輸入
+#               for event in pygame.event.get(): 
+#                   if event.type == pygame.QUIT:    如果按了視窗右上角的叉叉
+#                       run = False
+#                   elif event.type == pygame.KEYDOWN:     如果按了鍵盤上的任意按鍵
+#                       if event.key == pygame.K_UP:    UP可以改成鍵盤上任意按鍵
+#                           y -= 4
+#                       elif event.key == pygame.K_DOWN:
+#                           y += 4
+#---------------------以上寫法只能一次一次按，以下寫法可以按著--------------------------------                       
+#                       keys = pygame.key.get_pressed()        如果按鍵被按住會回傳True
+#                       if key[pygame.K_UP]:
+#                           y -= 4
+#                       elif key[pygame.K_DOWN]:
+#                           y += 4
+#               #遊戲更新
+#               x += 0.1
+#
+#               #畫面顯示
+#               window.fill((r, g, b))   介面調色盤(rgb為紅綠藍)
+#               pygame.draw.rect(x , (r, g, b), (x, y, h, w))   畫矩形(在哪畫, 顏色, 位置(x, y, 寬, 高))
+#                   注意:rect的(x, y)座標為矩形左上角座標 
+#               pygame.draw.circle(window, (r, g, b), (x, y), 半徑)   畫圓形(在哪畫, 顏色, 圓心位置, 半徑)
+#               pygame.display.update()    顯示    
+#            pygame.quit()          關閉遊戲
+# font = pygame.font.Font("",n) 引入字體(字體檔案, 大小)
+# text = font.render("", True, (rbg)) 訊息內容(內容, 是否要抗鋸齒, 顏色)
+# window.blit(text,(x, y)) 把訊息畫出來
+# img = pygame.image.load("圖片路徑")   引入圖片
+# img = pygame.transform.scale(img, (width, height))  把img調整成(width, height)
+# window.blit(img, (x, y))  把圖片畫出來
+#    注意:後畫的會把先畫的蓋住
+# pygame.transform.rotate(img, r)   把圖片旋轉r度
+# pygame.transform.flip(img, True, False)   把圖片翻轉(圖片, 水平翻轉, 垂直翻轉)
+# pygame.display.set_icon(img)  換視窗左上角的圖片
+# pygame的sprite類別可以用來表示遊戲中的所有物件:
+# 步驟:(1)先建立一個遊戲物件的class---->
+#      (2)讓這個class繼承sprite並且定義img:
+#           class Bird(pygame.sprite.Sprite):
+#               def __init__(self, x, y, img):
+#                   super().__init__()
+#                   self.image = img
+#                   self.rect = self.image.get_rect()    定位用的，預設在左上角
+#                   self.rect.center = ((x, y))          設定物件中心位置
+#                             (top,botton,right,left,topleft,topright,bottonleft,bottonright)
+#      (3)到main.py創建物件
+#      (4)創建sprite群組:group = pygame.sprite.Group()
+#      (5)將物件加入群組:group.add(物件名稱)
+#      (6)顯示出來:group.draw(window)
+# pygame.time.get_ticks()會回傳遊戲開始到現在過了幾毫秒
+# 動畫製作的方法直接看bird.py
+# self.kill()會把自己刪掉
+# pygame.MOUSEBUTTONDOWN 可以偵測有沒有按滑鼠
+# event.buttom 按左鍵會回傳1；按右鍵會回傳3 
+# pygame.mouse.get_pressed() 可檢驗右滑鼠是否被按住
+#    會回傳三個布林值被按回傳True (左鍵, 中鍵, 右鍵)
+# elif event.type == pygame.MOUSEMOTION:
+#    print(event.pos)                       可以偵測"移動中"滑鼠位置
+# pygame.mouse.get_pos()    可以持續偵測滑鼠不論有沒有移動
