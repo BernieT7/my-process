@@ -43,7 +43,7 @@ ball = Ball(WIDTH/2, HEIGHT/2, 10, WHITE)
 paddle_1 = Paddle(10, y_left, paddle_width, paddle_height, WHITE)
 paddle_2 = Paddle(WIDTH-paddle_width-10, y_right, paddle_width, paddle_height, WHITE)
 
-font = pygame.font.Font("微軟正黑體.ttf", 30)
+font = pygame.font.Font("C:/Users/user/Desktop/my projectt/乒乓套件/微軟正黑體.ttf", 30)
 
 clock = pygame.time.Clock()
 run = True
