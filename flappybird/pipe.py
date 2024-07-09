@@ -15,8 +15,15 @@ class Pipe(pygame.sprite.Sprite):
             self.rect.topleft = (self.x, self.y)
 
         self.pipe_speed = 4
+        self.bird_pass = False
 
-    def update(self):
-        self.rect.x -= self.pipe_speed
-        if self.rect.right < 0:
-            self.kill()
+    def update(self, conti):
+        if conti:
+            self.rect.x -= self.pipe_speed
+            if self.rect.right < 0:
+                self.kill()
+        else:
+            self.pipe_speed = 0
+            self.rect.x -= self.pipe_speed
+            if self.rect.right < 0:
+                self.kill()

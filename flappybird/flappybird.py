@@ -37,19 +37,19 @@ score = 0
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("可愛的鳥鳥")
 
-bg_img = pygame.image.load("bg.png")
+bg_img = pygame.image.load("flappybird/bg.png")
 bg_img = pygame.transform.scale(bg_img, (WIDTH, HEIGHT))
 
-ground_img = pygame.image.load("ground.png")
+ground_img = pygame.image.load("flappybird/ground.png")
 
 bird_imgs = []
 for i in range(1, 4):
-    bird_imgs.append(pygame.image.load(f"bird{i}.png"))
+    bird_imgs.append(pygame.image.load(f"flappybird/bird{i}.png"))
 
-pipe_btm_image = pygame.image.load("pipe.png")
+pipe_btm_image = pygame.image.load("flappybird/pipe.png")
 pipe_up_image = pygame.transform.flip(pipe_btm_image, False, True)
 
-restart_image = pygame.image.load("restart.png")
+restart_image = pygame.image.load("flappybird/restart.png")
 
 pygame.display.set_icon(bird_imgs[0])
 
@@ -65,7 +65,7 @@ pipe_group = pygame.sprite.Group()
 pipe_frequency = 1500
 last_pipe_time = pygame.time.get_ticks() - pipe_frequency
 
-font = pygame.font.Font("微軟正黑體.ttf", 60)
+font = pygame.font.Font("flappybird/微軟正黑體.ttf", 60)
 
 conti = True
 run = True
@@ -96,10 +96,6 @@ while run:
             score += 1
             first_pipe.bird_pass = True
 
-    print(first_pipe.rect.right < bird1.rect.left)
-
-    print(score)
-
     ground_x -= ground_speed
     if ground_x < -100:
         ground_x = 0
@@ -117,6 +113,5 @@ while run:
     if not conti:
         window.blit(restart_image, (WIDTH / 2 - 150, HEIGHT / 2 - 41))
     pygame.display.update()
-
 
 pygame.quit()
