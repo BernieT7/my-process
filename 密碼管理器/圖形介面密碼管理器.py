@@ -53,7 +53,7 @@ def search():
 window = Tk()
 window.config(padx=50, pady=50)
 
-img = Ima.PhotoImage(file="lock.png")
+img = Ima.PhotoImage(file="密碼管理器/lock.png")
 can = Canvas(width=224, height=225)
 can.create_image(112, 112, image=img)
 can.grid(row=0, column=0, columnspan=2)
