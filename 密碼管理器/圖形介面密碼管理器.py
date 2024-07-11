@@ -6,10 +6,10 @@ import json
 
 def get_dic():
     try:
-        with open("code.json", "r") as file:
+        with open("密碼管理器/code.json", "r") as file:
             dic = file.read()
     except FileNotFoundError:
-        with open("code.json", "w") as file:
+        with open("密碼管理器/code.json", "w") as file:
             return {}
     else:
         if dic == "":
