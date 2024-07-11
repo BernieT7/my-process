@@ -13,7 +13,8 @@ def stock_info():
     stock.to_csv(f"{result}.csv", encoding="utf_8_sig", index=False)
 
 
-schedule.every(5).seconds.do(stock_info)
-while False:
+schedule.every().day.at("08:00:00").do(stock_info)
+
+while True:
     schedule.run_pending()
     time.sleep(5)
