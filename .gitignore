@@ -1,329 +1,277 @@
-# print("") 印文字
-# input("提示語句") 使用者輸入(資料型態為字串喔)
-# print(input("")) 會印出使用者輸入內容
-# print("" + input("")) 可印出文字加使用者輸入內容
-# x=""變數替換指定內容
-# x=input("")變數替換使用者輸入內容
-# 變數命名規則：
-#     1.只能是字母、數字、_的組合
-#     2.開頭不能是數字
-#     3.不能是關鍵字
-# 資料型態：  
-#     字串string："文字"
-#     整數int：(直接寫數字就好不用引號)
-#     小數float：(直接寫小數數字就好不用引號)
-#     布林值boolean：True/False
-# pinrt(""[n])可以取得字串中的第(n+1)個字
-# type()檢驗資料型態
-# 轉換資料型態：
-#     1.int()換整數
-#     2.float()換浮點數
-#     3.str()換字串
-# 字串中引號中還有引號，解決方法：
-#     1.print('....",,"....')
-#     2.print("....\",,,\"....")
-# \n 換行
-# 資料型態不同轉字串相加：
-#     1.print("..." + str(age) + ",,," + str(is_male))
-#     2.print(f"...{age},,,{is_male}")
-# 運算符號：+,-,*,/,//(把小數點去點),**(次方),%(取除法餘數)
-# round(x,n)對x四捨無入到小數點後n位數
-# 自己對自己運算：
-#     1.(num = num + n)=(num += 10)
-#     2.(num = num * n)=(num *= 10)
-#     3.(num = num / n)=(num /= 10)
-# if 語句：
-#     if 條件:
-#         條件成立要做的事
-#     else:
-#         條件不成立要做的事
-# 判斷左右是否相等時要用：
-#     a == b而不是a = b，一個等於意思是令右邊等於左邊
-# 不相等的判斷符號：!=
-# elif 語句(有多個條件時使用)(任條件成立後，其以下的條件都會被跳過):
-#     if 條件1:
-#         條件成立要做的事
-#     elif 條件2:
-#         條件成立要做的事
-#     elif 條件3:
-#         條件成立要做的事
-#     else:
-#         條件不成立要做的事
-# 巢狀if:
-# if  條件:
-#     if 條件中的條件:
-#         條件成立要做的事
-#     else:
-#         條件不成立要做的事
-# else:
-#     條件不成立要做的事
-# 注意：if的條件不能寫雙重判斷(例如:0<x<1)，只能寫一個:
-# if x<0:
-# elif x<1
-# 這樣寫就是0<x<1的意思，因為程式會由上到下運行
-# 邏輯運算:
-#     and且(兩邊都成立才True)。a and b
-#     or或(任一邊成立則True)。a or b
-#     not反敘述。not a
-# 將使用者輸入字串中英文字母全部改大寫OR改小寫
-#     input().upper()大寫
-#     input().lower()小寫
-# 創建函數:
-#     def 函數名稱(參數):
-#         內容
-#         參數
-#         .
-#         .
-#         .
-#     函數名稱()     呼叫函數
-# 關於函數與參數:
-#     1.函數數可被傳入參數也可傳出參數
-#     2.參數多容易輸入順序錯誤，此時可以用指定的方式避免
-#         def function_1(a, b, c)
-#             content
-#         function_1(b = 2, c = 3, a = 1)
-#     3.為什麼需要函數？當某個龐大計算或邏輯需重複使用時，函式可以濃縮程式
-#     4.函數回傳:return
-#         def function_1(a, b, c)
-#             content
-#             return cool
-#        test = def function_1(a, b, c)
-#        其實等於 test = cool
-#        注意函數遇到return會使函數中return以下的程式碼都不被執行
-#     5.避免參數型態錯誤:
-#         if type(a) != int or type(b) != int or type(c) != int:
-#             return "請輸入整數"  
-# module 模組：(就是把許多函數變成一個工具箱存入另一個檔案，要用的時候呼叫他就好，這樣主檔案的畫面會比較乾淨)
-#     呼叫方式：import 模組名--->模組名.模組內函式(參數)
-# random 模組
-#     1.random.randint(a,b) 隨機生成[a,b]任意整數
-#     2.random.random()隨機生成[0,1)任意浮點數
-#         補：random.random()*n 即可生成[0,n)任意浮點數
-#     3.random.shuffle(list名稱) 隨機打亂list(注意不能打亂str，只能打亂list)
-#     4.random.sample(list名稱, n) 從list中隨機挑出n筆資料
-# 列表 list(為一種資料型態，可以存多筆資料):
-#     1.表示方法:list名稱 = [a, b, c, ...]
-#     2.list名稱[n] list中第n+1筆資料
-#     3.list名稱[-n] list中倒數第n筆資料
-#     4.列表中的資料型態可以不一致:(EX:[1, 2, true, "HI"])
-#     5.list名稱.append(欲加入資料) 加入新資料
-#     6.list名稱.count(list中某資料) 可得知list中某資料共出現幾次
-#     7.list名稱.insert(a, b) 在第a筆資料插入b這筆新資料
-#     8.list名稱.remove(b) 刪除list中第一筆出現的b
-# 字串分割:字串名稱.split("欲分割的符號")
-# 取得字串長度:len(字串名稱)
-# 取得list中任意一筆資料:random.randint(0, len(字串名稱)-1)
-# nested list巢狀列表:(列表中的列表)
-#     EX:[[1,2,3],2,4,7,[2,3,7],6]
-#     1.list名稱[n][m] 取得第n筆資料中的第m筆資料
-#     2.矩陣:巢狀列表每一筆資料的大小都一樣
-#        EX:[
-#            [1,2,3],
-#            [4,5,6],
-#            [7,8,9]
-#           ]
-#     3.矩陣念法:n*m指的是n row行, m colunm列(程設裡面為 直列橫行)
-#     4.list名稱[n][m] 取得第n row 第m colunm 資料
-#     5.取得n為列表的值:list名稱[][][]...共n個中括號
-# """內容""" 這樣換行時直接按ENTER 就會自動幫你換行
-# while迴圈:重複執行直到條件判斷為false
-#     1.寫法:while 條件判斷:
-#               要重複執行的程式
-# for迴圈:可以依序一一取字串中的每一個字or list的每一筆資料，並重複執行某程式碼
-#     1.寫法:for item in 字串或list:(item為一一取出的資料暫存位置，不一定叫item也沒關係)
-#               要重複執行的程式
-#     2.常與range()搭配
-#       寫法:for i in range(a, b):(重複執行b-a次)
-#               要重複執行的程式
-# range(n, m)函數:
-#     1.[n, n+1, ..., m-1] 注意!不包函m
-#     2.range(n, m, t)第三個參數t代表的是每一個數之間的間隔大小
-# list(字串) 把字串逐字變列表
-# 字典 dictionary:輸入"key"配對到一個"value"
-#     (EX:輸入:"蘋果"，配對到"apple")
-#     1.創建字典寫法:
-#          字典名稱 = {
-#               key1: value1, 
-#               key2, value2
-#               ...
-#                }
-#     2.取字典值:字典名稱[key名稱]
-#     3.字典不對型態設限制
-#     4.更改/新增字典的值:字典名稱[key名稱] = 值
-#     5.與for loop的搭配使用:
-#         for item in 字典名稱:
-#             print(item)                取得所有key
-#             print(字典名稱[item])           取得所有value
-#     6.如果key所對應的value為list型態，取得該list第n筆資料方式為:
-#         字典名稱[key][n-1]
-#     7.如果key所對應的value為另一字典，取得另一字典資料方式為:
-#         字典名稱[原字典key][另一字典的key]
-#     8.list中的資料型態可以為字典:
-#         (EX:[1, 2, {key1: value1, key2: value2,...}, 5, 6])
-#         取得方式:list名稱[2][key]
-#     9.回傳所有keys:字典名稱.keys() 注意回傳結果不是list
-#     10.回傳所有values:字典名稱.values() 注意回傳結果不是list
-# 區域變數:函式內部的變數，只有函式內有效，函式外無效
-#     1.函式與函式之間的變數名稱相同不會怎麼樣
-#     2.一般而言，函數內部對全域變數做修改，此全域變數對於函數外部來說不變
-#     3.從函數內部修改全域變數，要先宣告:
-#         def function():
-#             global a
-#             對全域變數a做修改
-#         注意:從內部修改全域變數是一件危險的事，不建議這麼做
-# 全域變數:函式外部的變數，不管哪裡都有效
-#     1.for, while, if, ...內所定義的變數皆為全域
-# break:迴圈中遇到break會直接跳出迴圈
-# continue:迴圈中遇到continue會直接進入下一次迴圈
-#     該次迴圈中continue以下的程式碼均不執行
-# 檢驗字串是否為整數:字串名稱.isdigit()
-#     如果字串為整數，回傳true；否則回傳false
-# file = open("檔案路徑", "模式") 開啟檔案
-#     模式有三種 : r(讀取), w(覆寫), a(在原先檔案後新增資料)
-# 關於"r"模式:
-#     1.file.read() 讀取
-#     2.file.readline() 讀取一行(從第一行開始往下讀)
-#     3.for line in file:
-#          print(line)       這樣就可以一行一行讀出來
-#     4.讀取到的會是字串喔
-# 關於"w"模式:
-#     1.file.write("覆寫內容") 只能是字串!
-# 關於"a"模式:
-#     1.file.write("欲加入新資料") 只能是字串!
-# open("檔案路徑", "模式", encoding="utf-8")這樣就會支援中文
-# file.close() 關閉檔案
-#     一定要關閉，不然會消耗電腦資源
-# with open( , , ) as file: 這樣寫就不用close
-# 絕對路徑:從電腦最初始位置寫到檔案名稱 EX:"C:\Users\user\learn\pythonProject\111.txt"
-#     注意:\要改成/
-# 相對路徑:從目前程式位置延伸 EX:(C:\Users\user\learn\pythonProject)目前程式位置 + \111.txt
-# 寫絕對路徑一定可以，寫相對路徑的話111.txt與需要用111.txt的程式需要在同一個資料夾才能用
-# "../"可以回到上一個資料夾 EX:"../../111.txt"回到前兩個資料夾的111.txt
-# import json 此為json模組
-# json是一種檔案格式
-# file.write(json.dumps(欲傳送資料, indent = 縮排格數)) 把python原格式轉換成json格式
-#     indent可以幫我們自動換行，不需要也可以不用寫
-# x = json.loads(file.read()) 把json格式轉換成python原格式
-# if x in y: 可以檢驗x是否在y裡，有的話回傳True，否則傳False
-# class 類別:可以用來創建自己的資料型態
-#     寫法: class 資料型態名稱:
-#               pass
-# pass:當你的class或是函數內容什麼都沒有時就要加個pass
-# object 物件:根據類別class定義出的東西  
-#           x = 資料型態名稱() ----->創建資料
-#           x.屬性1 = value1
-#           x.屬性2 = value2
-#               .
-#               .
-#               .
-# 不過以上寫法非常沒效率，用 __init__函數會比較好
-# __init__函式:創建資料的時候建會呼叫他
-#     寫法: class x:
-#               def __init__(self, 屬性1, 屬性2, 屬性3, ...)
-#                   self.屬性1 = 屬性1
-#                   self.屬性2 = 屬性2
-#                   self.屬性3 = 屬性3
-#                       .
-#                       .
-#                       .
-#           y = x(屬性1, 屬性2, 屬性3) 創建資料y
-# method 方法:在class裡面寫的函式
-#     寫法: class x:
-#              def method(self, 參數1, ...) 
-#                   content
-#              y.method(參數1, ...) 使用該method
-# 模組引入:
-#     1.import f模組 (as f)
-#       f.f的函式()       一定要呼叫
-#     2.from f模組 import f模組的函式1, 函式2, ...
-#       f的函式()         前面不用寫名字
-# package 套件:把許多模組裝在同一個資料夾
-#     1.資料夾內必須包含__init__.py
-#     2.引入套件中模組:
-#         (1)import p套件.f模組 (as f)
-#            p套件.f模組.f的函式()
-#         (2)from 套件 import 模組 (as f)
-#            p套件.f模組.f的函式()
-#     3.import 套件    會引入__init__
-# subpackage 子套件:套件中的套件
-#     1.資料夾內必須包含__init__.py
-#     2.引入子套件中模組:
-#         import p套件.s子套件.f模組 (as f)
-#         p套件.子套件.f模組.f的函式()
-#     3.import 套件.子套件    會引入__init__
-# tuple元組:跟list很像，可以存放多筆資料
-#     寫法:(1, 2, 3, ...)
-#     與list的差異:
-#         1.元組為小括號
-#         2.元組一但被創建就無法被修改
-# tkinter 為一模組(套件):可以創造GUI程式，也就是圖形介面程式
-#     1.寫法:from tkinter import * 
-#          window = Tk()        -------------創建一個視窗   
-#          對這個視窗的指令要在window = Tk()及window.mainloop()中間
-#          window.mainloop()
-#     2.window.title("圖形名字") 設定圖形名稱 
-#     3.window.geometry("寬x高") 設定圖形寬跟高
-#     4.window.maxsize(width="寬度上限", height="高度上限") 設定圖寬高上限
-#     5.window.minsize(width="寬度下限", height="高度下限") 設定圖寬高下限
-#     6.window.resizable(False, False) 寬高皆無法調整
-#     7.x = Label(text="文字", font=("字體", 字大小)) 在視窗上寫字
-#       x.pack(side="位置")    字的位置
-#       位置可為top, left, right, bottom
-#     8.更新設定寫法:
-#          (1)x["想更新的設定"] = 更新內容
-#          (2)x.config(想更新的設定1 = 更新內容,想更新的設定2 = 更新內容, ...)
-#     9.y = Buttom(text="按鈕名稱", font=("", )) 創建按鈕
-#       y.pack(side="位置") 按鈕位置
-#     10.y = Buttom(text="按鈕名稱", font=("", ), command=指令名稱) 按按鈕就會有功能
-#          def 指令名稱
-#              指令
-#     11.z = Entry(width=寬度, font("", ))  創建對話框
-#        z.pack(side="位置")  對話框位置
-#     12.def use_spinbox():
-#            print(a.get())
-#        a = Spinbox(from=n, to=m, width=寬度, command=use_spinbox)   創建範圍n到m的輸入框
-#        a.pack()
-#     13.def use_scale(value):
-#            print(value)
-#        b = Scale(from=n, to=m, command=use_scale)   創建範圍n到m拉桿 
-#        b.pack()
-#     14.def use_checkbuttom():
-#            print(check.get())
-#        check = IntVar()    有打勾IntVar()回傳1；否則IntVar()回傳0
-#        c = Checkbuttom(text="框框名稱", variable=check, font=("", ), command=use_checkbuttom) 創建打勾框框
-#        c.pack()
-#     15.def use_radiobuttom():
-#            print(radio.get())
-#        radio = IntVar()
-#        d1 = Radiobuttom(text="選擇1", value=1, variable=radio, font=("", ), command=use_checkbuttom) 創建選擇點點1
-#        d2 = Radiobuttom(text="選擇2", value=2, variable=radio, font=("", ), command=use_checkbuttom) 創建選擇點點2
-#        d1.pack()
-#        d2.pack()
-# pack()括號內的排版功能
-#     1.padx=左右間格數
-#     2.pady=上下間格數
-#     3.side="位置"
-# name.place(x=n,y=m) 把name放在x=n,y=m
-# 注意，視窗的原點在左上角，x軸向右為正，y軸向下為正
-# 元件的原點也在左上角，要改變的話這樣寫:name.place(anchor="center", x=n, y=m) 元件原點改為中心點
-# name.grid(row=n, column=m) 把name放在第n行,第m列
-# 利用grid排列要注意，他會把元件黏在一起，元件之間不會有空的row或column
-# entry的值如果要轉換成int or float，只能在另一個函數轉，函數外會轉不了
-# .get()所取得的值，型態為str
-# 函式參數預設值:有預設值的函式呼叫函式時可以不用傳入參數
-#     寫法:def func(a, b, c=3):         c有預設值
-#
-#          func(a, b)                呼叫時參數寫a跟b就好
-#          func(a, b, c=5)           要改變預設值要寫:c=
-# 傳入無限參數的函式:
-#     1.寫法:def func(*num):         變數前加上*就可以一次傳入多個參數，並且這些參數會是一組元組的型態
-#           
-#          func(a, b, c, ...)
-#     2.可以與一般變數混著用:def func(a, b, *num):
-#
-# 傳入無限'指定'參數的函式:
-#     1.寫法:def func(**num):        變數前加上**就可以一次傳入多個指定參數，並且這些參數會是字典的型態
-# 
-#            func(num1=1, num2=2, num3=3, ...)      型態:字典(key=value)
-#     2.可以與一般變數混著用:def func(a, b, **num):
-# 第三方套件
+import pandas as pd                                 pandas數據分析好夥伴
+import matplotlib.pyplot as plt                     可以將資料可視化
+import matplotlib as mlp
+from matplotlib.font_manager import fontManager 
+import wget                                         以上三個引入字體時用的到
+from ipywidgets import interact
+import numpy as np
+
+    1.plt.scatter(x, y, marker="標記圖示", color="顏色")        畫點
+    2.plt.title("標題")                                         標題
+    3.plt.plot(x, y, color="顏色")                              畫線
+    4.圖例:
+        plt.plot(x, y, color="red", label="圖例名稱")                       要多寫一個參數label
+        plt.scatter(x, y, marker="o", color="blue", label="圖例名稱")       要多寫一個參數label
+        plt.legend()
+    5.限制圖不隨數據伸縮:
+        plt.xlim([a, b])
+        plt.ylim([a, b])
+    6.創建3D圖:
+        ax = plt.axes(projection="3d")                                          創建3D圖(xyz軸)
+        ax.x/y/zaxis.set_pane_color((rgb))                                     設定平面顏色
+        x_grid, y_grid = np.meshgrid(x, y)                                      把數據變成網格，這樣才能畫出曲面
+        ax.plot_surface(x_grid, y_grid, z, cmap="顏色", alpha=不透明度)          創建3維曲面
+        ax.plot_wireframe(x_grid, y_grid, z, color=:"邊框顏色", alpha=不透明度)  新增邊框顏色
+        ax.view_init(上下旋轉角度, 左右旋轉角度)
+        ax.set_title("標題")
+        ax.set_xlabel("xlabel")
+        ax.set_ylabel("ylabel")
+        ax.set_zlabel("zlabel")
+    7.找到符合條件的座標(x, y)                        
+        x, y = np.where(costs == np.min(cost))
+    8.調整圖的大小:
+        plt.figure(figsize=(寬, 高))
+    9.建立模型的資料預處理:
+        (1)遇到非數字但存在大小關係的特徵(ex:學歷, ...)
+           要label encoding， n 筆資料高到低依序排 (n-1) ~ 0
+            ex:
+                import pandas as pd
+                data["EducationLevel"] = data["EducationLevel"].map({"高中以下": 0, "大學": 1, "碩士以上": 2})
+        (2)遇到非數字也不存在大小關係的特徵(ex:性別, 地名, ...)
+           用oneHot encoding，概念很像虛擬變數:(若該數據屬性有n種，則額外新增n-1項數據，若該資料有其屬性，其值為1；反之其值為0)
+            ex:
+                from sklearn.preprocessing import OneHotEncoder
+
+                onehot_encoder = OneHotEncoder()
+                onehot_encoder.fit(data[["City"]])
+                city_num = onehot_encoder.transform(data[["City"]]).toarray()
+                data[["CityA", "CityB", "CityC"]] = city_num
+                data = data.drop(["City", "CityC"], axis=1)
+        (3)要把數據分開分成訓練集以及訓練集:
+                from sklearn.model_selection import train_test_split
+                x = data[["YearsExperience",	"EducationLevel",	"Salary",	"CityA", "CityB"]]
+                y = data["Salary"]
+                x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+                x_train = x_train.to_numpy()
+                x_test = x_test.to_numpy()
+    10.array:([[]])
+        (1)array跟array運算會一一對應運算喔(ex:[1, 2, 3, 4]*[1, 2, 3, 4] = [1, 4, 9, 16])
+        (2)array[a, b] 取得第一維(層)的a+1位，第二維(層)的第b+1位
+        (3)array[:, b] 冒號代表該維度全都要
+        (4)np.array([[...]...]) 創建矩陣
+        (5)np.zeros(n) 可以創建n列矩，其值皆為0
+        (6)array.shape 可以得到array的行列數
+        (7)np.set_printoptions(formatter={'float': '{: .2e}'}) 可以把矩陣中印出的數值限制在小數點後2位
+        (8)(a*b).sum(axis=1) 把a, b兩陣列元素對元素相乘後相加,axis=1表水平加總，0表垂直
+    11.特徵縮放:多元回歸不同的特徵值的範圍不一樣(ex:0<x1<10, -100<x2<100)，這會導致其特徵所對應的斜率在學習的過程中走的不一樣快
+       這會降低找到睡點的速度。
+        解決方法:標準化，xi = (xi-mean)/SD
+            from sklearn.preprocessing import StandardScaler
+
+            scaler = StandardScaler()
+            scaler.fit(x_train)
+            x_train = scaler.transform(x_train)
+            x_test = scaler.transform(x_test)
+    12.關於深度學習工具pytorch
+        x = torch.tensor(可以放數字, list, array)    torch是一個存放資料的地方
+        x.ndim                                      可以取得tensor的維度
+        x.shape                                     可以取得各維度有幾個值
+        x = torch.rand(n, m, ...)                   可以創建shape為[n, m, ...]的隨機tensor
+        torch.manual_seed(n)                        固定每一次生成的隨機tensor，以防每次執行或是跑迴圈時有差異
+        x = torch.zeros(n, m, ...)                  可以創建shape為[n, m, ...]的tensor其每個值皆為0
+        x = torch.ones(n, m, ...)                   可以創建shape為[n, m, ...]的tensor其每個值皆為1
+        x = torch.arange(n, m, d)                   可以創建n~m間隔為d的list
+        torch.tensor(, 
+                        dtype= ,                    設定此tensor資料型態
+                        device= ,                   設定把資料放在神裝置上(cpu, gpu)
+                        requires_grad= )            設定是否追蹤梯度(可幫助微分)
+        x[n][m][.]...[.]                            取值
+        x (+/-/*///%) y                             1對tensor做運算，所有值都會一起運算
+        torch.matmul(x, y)                          矩陣相乘
+        x.T                                         矩陣轉置
+        x.reshape(n, m)                             將shape轉換為n*m但要注意轉換前的資料總數一定要是n*m
+            n或m寫-1會自油調配該維度大小
+        torch.from_numpy(array)                     可以把numpy的矩陣轉換成torch的tensor
+        x.numpy()                                   可以把torch的tensor轉換成numpy的矩陣
+    
+    其他:
+        np.where(判斷條件, True的回傳值, False的回傳值)       針對布林值有不一樣的回傳值
+        (a == b).sum()                                       a = b的次數
+
+引入字體:
+    import matplotlib as mlp
+    from matplotlib.font_manager import fontManager
+    import wget
+
+    wget.download("https://github.com/GrandmaCan/ML/raw/main/Resgression/ChineseFont.ttf")
+
+    fontManager.addfont("ChineseFont.ttf")
+    mlp.rc('font', family="ChineseFont")
+互動原件:
+    from ipywidgets import interact
+    interact(函式, 參數1, 參數2, ...)
+創建矩陣:
+import numpy as np
+
+    ws = xp.arange(a, b)
+    bs = yp.arange(c, d)
+    costs = np.zeros((b-a,d-c))
+
+機器學習:
+    A.簡單線性迴歸y = wx + b:表示樣本對應關係的最適直線
+        1.定義最適值線:min error，也就是min sum((y_pred-y)^2)
+        2.y_pred-y也叫做"cost function"
+        3.y_pred = w*x + b => cost function = (w*x + b - y)^2
+        4.找最適的方式:(使誤差最小的w, b)
+            (1)列舉找最小:列舉w,b可能範圍所有的cost然後找最小的
+            (2)gradient descent:從隨機一個位置開始，慢慢往下找出一次微分等於0的點
+                方法:(不斷算出斜率，更新w, b)
+                cost_b'= 2 (w*x+b-y)      對b微分
+                cost_w'= 2 (w*x+b-y)*x    對w微分
+                b -= 斜率(b)*學習率
+                w -= 斜率(w)*學習率
+                #學習率:往下走的步伐大小，不能太大！
+        5.得到最適w, b後就可以帶入原式進行預測了
+    B.多元線性迴歸y = w1x + w2x + ... + b
+        同簡單線性迴歸
+    C.邏輯斯回歸:(用在分類問題，當今天預測的y值為有限的時候使用)
+        1.sigmoid function:(會把原本的直線彎曲)
+            令 z = w1x + w2x + ... + b
+            sigmoid function = y_pred = 1/(1+e^(-z)) = 1/(1+e^-(w1x + w2x + ... + b))
+        2.cost function用binary cross entropy:
+            cost = -log(y_pred), if y = 1
+                 = -log(1-y_pred), if y = 0
+            =>cost = -y*log(y_pred) - (1-y)*log(1-y_pred)
+        3.找最適，找法跟上面一樣
+        補充:(sklearn模組可以直接幫我們做邏輯斯回歸)
+            from sklearn.linear_model import LogisticRegression
+            lg_model = LogisticRegression()
+            lg_model.fit(x_train, y_train)
+            y_pred = lg_model.predict(x_test)
+        補充:(sklearn的力量，只要是sklearn有的數學模型，只要這樣寫都可以自動幫我們做ML)
+            from sklearn.數學模型 import 模型模組名稱
+            model = 模型模組名稱()
+            model.fit(x_train, y_train)
+            y_pred = model.predict(x_test)
+            (可以上網搜尋scikit learn找尋sklearn裡的數學模型有哪些)
+
+深度學習:
+    **輸入層--->隱藏層--->輸出層
+      (輸入)    (轉換)    (輸出)
+    **數學角度:多條線性函數--->線性轉換(激勵函數)後相加，形成貼近資料分布的函數--->輸出結果
+    **可利用python第三方套件pytorch進行深度學習
+    **一層到另一層之前都會經過一個激勵函數activation function
+    **深度學習其實是很多複雜的線性迴歸所構成
+    **常見激勵函數:sigmoid(二元分類), ReLU(預測不可能為負), Tanh(), softmax(多元分類)
+    **隱藏層常用ReLU
+    **不同的激活函數、層數、神經元都會影響準確度
+    **模型表現不好的原因:
+        (1)欠擬合underfitting，在訓練集及測試集的表現皆不好
+            **判斷方式:畫出cost圖，訓練集以及測試集的cost都還可以在更低
+            **解決方法:增加學習率、增加epoch、增加模型複雜度
+        (2)過擬合overfitting，在訓練集的表現很好，但在測試集的表現不好
+            **判斷方式:畫出cost圖，訓練集比測試集低很多
+            **解決方法:蒐集更多資料、簡化模型、提早停止訓練，data augmentation(對原資料做轉換創造更多資料)
+        (1)建立一個模型的分類:(ex:SLR)
+            from torch import nn
+
+            class LinearRegressionModel(nn.Module): <------------繼承nn.Module
+                def __init__(self):
+                    super().__init__()              <------------初始化nn.Module的參數
+                    self.w = nn.Parameter(torch.rand(1, requires_grad=True))
+                    self.b = nn.Parameter(torch.rand(1, requires_grad=True))
+
+                def forward(self, x):         <------------------一定要有一個名叫foward的函數！
+                    return self.w*x + self.b  <------------------SLR的模型
+
+            補充:list(model.parameters()) or model.stat_dict() 可以得到模型的參數值
+        (2)讀取資料後要先轉換成numpy形式在轉換成torch形式
+        (3)呼叫class的foward函數這樣寫:
+            model = LinearRegressionModel()                                     創建一個物件
+            y_pred = model(x)                                                   呼叫foward函數
+        (4)cost function寫法:pytorch官網--->Docs--->網頁左邊點擊torch.nn--->
+        點擊Loss Funcitons--->找到cost funtion想要的算法，複製其套件名稱
+        (ex:nn.MSELoss() 線性cost, nn.BCELoss() logistic cost)
+        (5)optimizer寫法:pytorch官網--->Docs--->網頁左邊點擊torch.optim--->
+        找到Algorithms--->找到optimizer想要的算法，複製其套件名稱
+        (ex:torch.optim.SGD(params=model.parameters(), lr=0.001), torch.optim.Adam(params=model.parameters(), lr=0.001))
+        (6).常見錯誤:
+            a.兩矩陣無法相乘，ex:n*m 跟 n*m相乘，要把其中一個矩陣變成m*n才能乘(用矩陣.reshape)
+            b.兩資料運算資料型態不，要換成一樣的(用data.type(資料型態))
+        (7)優化模型，更新斜率, 截距:
+            optimizer.zero_grad()                                               因為追蹤梯度的功能會把每一次計算的斜率疊加，所以每一次計算前要先歸零
+            cost.backward()                                                     微分
+            optimizer.step()                                                    更新
+        (8)重複更新，找最適
+            for epoch in range(epochs):
+                model.train()                                                   訓練階段要寫這個
+                y_pred = model(x_train)
+                train_cost = cost_fn(y_pred, y_train)
+                optimizer.zero_grad()
+                train_cost.backward()
+                optimizer.step()
+                train_cost_hist.append(train_cost.detach().numpy())
+
+                model.eval()                                                   測試階段要寫這個
+                with torch.inference_mode():                                   這樣寫就只會跑測試階段的程式，不會跑上面訓練的程式
+                    test_pred = model(x_test)
+                    test_cost = cost_fn(test_pred, y_test)
+                    test_cost_hist.append(test_cost)
+
+                if epoch % 10 == 0:
+                    print(f"Epoch: {epoch:5}, Train Cost: {train_cost: 2e}, Test Cost: {test_cost: 2e}")
+        (9)儲存模型參數:
+            torch.save(obj=model.state_dict(), f="儲存位置")
+        (10)載入模型參數:
+            model_load = LinearRegressionModel()
+            model_load.load_state_dict(torch.load(f="檔案位置"))
+            model_load.state_dict()
+        (11)建立模型也可以這樣寫:
+            class LinearRegressionModel(nn.Module):
+                def __init__(self):
+                    super().__init__()
+                    self.linear_layer = nn.Linear(in_features=1, out_features=1, bias=True, dtype=torch.float64)   --->in_features是特徵x的數量(輸入層)，out_features是輸出
+                                                                                                                    y的數量(輸出層)bias指的是b，True會+b，False不會+b
+                def forward(self, x):
+                    return self.linear_layer
+        (12)連線GPU做ML會比較快:
+                !nvidia-smi                                                                        檢查colab提供的GPU是哪張
+                torch.cuda.is_available()                                                          檢查是否有連線到此張GPU
+                torch.cuda.device_count()                                                          檢查共連線了幾張GPU
+                devi = "cuda" if torch.cuda.is_available() else "cpu"                              設定裝置
+                tensor = torch.tensor([1, 2, 3], device=devi) or tensor = tensor.to(devi)          讓資料連線到裝置
+                model_3 = model_3.to(devi)                                                         讓模型連線到裝置
+                注意:要將資料轉換成numpy要把資料設定在CPU才能
+                    ==> data.cpu().detach().numpy()
+
+    圖像辨識:電腦眼中的圖片就是一對數字而已
+        **圖片=像素&顏色=height*width*channel and RGB ===>一張圖片有height*width*3(RGB)個數字(特徵x)
+        RGB的亮度在(0, 255)之間，channel指的是用幾層顏色疊出圖片
+        **利用類神經網路可以讓電腦辨識圖片
+        **辨識圖像的類神經網路的輸出不只一個並且我們會像要所有的輸出是機率的概念(介於0~1, 加起來等於1)
+        透過softmax function=e(zi)/(e(z1)+e(z2)+...)可以達成
+        **cost function為cross entropy==>cost = -y1*log(y1_pred)+-y2*log(y2_pred)+...
+        詳細code在google colab
+    不同種類的神經網路層:
+        (1)全連接層fully connected layer:神經元會看過所有特徵，把上一層每個神經元與下一層每個神經相連(nn.Linear)
+        (2)卷積層convolutional layer:常用於影像，將圖片分割，讓神經元僅看過一部分的特徵侯移動到下一部分特徵，訓練filter(w, b)，檢驗圖片
+                                     的某一部分是否有符合filter，可以有很多filter
+            **一些名詞:kernal size部分特徵大小, padding超出特徵範圍補齊的大小, stride每次移動距離
+            **max pooling:減少特徵使參數減少更好訓練
+                跟捲基層作法很像，也會有個框框kernal size(2*2)、padding、stride(2)，不同的是max pooling會把框框中數值最大的特徵留下其餘刪掉
+            **可以去CNN explainer玩一下
+            **卷積神經網路convolutional neural network:多層的卷積層
+    利用CNN-VGG做圖像辨識:
+        圖像--->  卷積層  --->ReLU--->  卷積層  --->ReLU--->max pooling--->  卷積層  --->ReLU--->  卷積層  --->ReLU--->max pooling--->全連接層--->softmax
+                kernal=3*3           kernal=3*3            kernal=2*2     kernal=3*3           kernal=3*3            kernal=2*2       
+                stride=1             stride=1              stride=2       stride=1             stride=1              stride=2
+                padding=1            padding=1             padding=0      padding=1            padding=1             padding=0
+                filter=8             filter=8                             filter=16            filter=16             
+                (28*28*8)            (28*28*8)             (14*14*8)      (14*14*16)           (14*14*16)            (7*7*16)
+    自製dataset:
+        要建立一個dataset的class，這個classes須具備:資料路徑、分別取出訓練集以及測試集路徑、取得輸出(y或稱類別classes)、將輸入的圖片轉(transform)為符合格式的圖片、
+        get item輸出轉換好的圖片、get len可以取得此物件長度
+    遷移學習:
+        利用先人訓練好的模型套用到自己欲處理的資料(任務要相同)
+        **改變最後一層的輸出就好，其他層(特徵提取)都要鎖住
+        **微調fune-tuning:調整最後幾層

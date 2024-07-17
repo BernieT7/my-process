@@ -5,7 +5,7 @@ from paddle import Paddle
 
 def paddle_move(key, left_paddle, right_paddle):
     global y_left
-    global y_right
+    global y_right 
 
     if key[pygame.K_w]:
         y_left = left_paddle.update(True, HEIGHT)

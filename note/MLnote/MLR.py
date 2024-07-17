@@ -7,6 +7,7 @@ import matplotlib as mpl
 from matplotlib.font_manager import fontManager
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 
 def compute_cost(x, y, w, b):
@@ -18,9 +19,10 @@ def compute_cost(x, y, w, b):
 def compute_gradient(x, y, w, b):
   y_pred = (x*w).sum(axis=1) + b
   ws_grad = np.zeros(x.shape[1])
+  b_grad = (y_pred - y).mean()
   for i in range(x.shape[1]):
     ws_grad[i] = (x[:, i]*(y_pred - y)).mean()
-  b_grad = (y_pred - y).mean()
+  
 
   return ws_grad, b_grad
 
@@ -69,6 +71,11 @@ y = data["Salary"]
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=87)
 x_train = x_train.to_numpy()
 x_test = x_test.to_numpy()
+
+scaler = StandardScaler()
+scaler.fit(x_train)
+x_train = scaler.transform(x_train)
+x_test = scaler.transform(x_test)
 
 np.set_printoptions(formatter={'float': '{: .2e}'})
 

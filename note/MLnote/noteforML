@@ -1,0 +1,277 @@
+import pandas as pd                                 pandas數據分析好夥伴
+import matplotlib.pyplot as plt                     可以將資料可視化
+import matplotlib as mlp
+from matplotlib.font_manager import fontManager 
+import wget                                         以上三個引入字體時用的到
+from ipywidgets import interact
+import numpy as np
+
+    1.plt.scatter(x, y, marker="標記圖示", color="顏色")        畫點
+    2.plt.title("標題")                                         標題
+    3.plt.plot(x, y, color="顏色")                              畫線
+    4.圖例:
+        plt.plot(x, y, color="red", label="圖例名稱")                       要多寫一個參數label
+        plt.scatter(x, y, marker="o", color="blue", label="圖例名稱")       要多寫一個參數label
+        plt.legend()
+    5.限制圖不隨數據伸縮:
+        plt.xlim([a, b])
+        plt.ylim([a, b])
+    6.創建3D圖:
+        ax = plt.axes(projection="3d")                                          創建3D圖(xyz軸)
+        ax.x/y/zaxis.set_pane_color((rgb))                                     設定平面顏色
+        x_grid, y_grid = np.meshgrid(x, y)                                      把數據變成網格，這樣才能畫出曲面
+        ax.plot_surface(x_grid, y_grid, z, cmap="顏色", alpha=不透明度)          創建3維曲面
+        ax.plot_wireframe(x_grid, y_grid, z, color=:"邊框顏色", alpha=不透明度)  新增邊框顏色
+        ax.view_init(上下旋轉角度, 左右旋轉角度)
+        ax.set_title("標題")
+        ax.set_xlabel("xlabel")
+        ax.set_ylabel("ylabel")
+        ax.set_zlabel("zlabel")
+    7.找到符合條件的座標(x, y)                        
+        x, y = np.where(costs == np.min(cost))
+    8.調整圖的大小:
+        plt.figure(figsize=(寬, 高))
+    9.建立模型的資料預處理:
+        (1)遇到非數字但存在大小關係的特徵(ex:學歷, ...)
+           要label encoding， n 筆資料高到低依序排 (n-1) ~ 0
+            ex:
+                import pandas as pd
+                data["EducationLevel"] = data["EducationLevel"].map({"高中以下": 0, "大學": 1, "碩士以上": 2})
+        (2)遇到非數字也不存在大小關係的特徵(ex:性別, 地名, ...)
+           用oneHot encoding，概念很像虛擬變數:(若該數據屬性有n種，則額外新增n-1項數據，若該資料有其屬性，其值為1；反之其值為0)
+            ex:
+                from sklearn.preprocessing import OneHotEncoder
+
+                onehot_encoder = OneHotEncoder()
+                onehot_encoder.fit(data[["City"]])
+                city_num = onehot_encoder.transform(data[["City"]]).toarray()
+                data[["CityA", "CityB", "CityC"]] = city_num
+                data = data.drop(["City", "CityC"], axis=1)
+        (3)要把數據分開分成訓練集以及訓練集:
+                from sklearn.model_selection import train_test_split
+                x = data[["YearsExperience",	"EducationLevel",	"Salary",	"CityA", "CityB"]]
+                y = data["Salary"]
+                x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+                x_train = x_train.to_numpy()
+                x_test = x_test.to_numpy()
+    10.array:([[]])
+        (1)array跟array運算會一一對應運算喔(ex:[1, 2, 3, 4]*[1, 2, 3, 4] = [1, 4, 9, 16])
+        (2)array[a, b] 取得第一維(層)的a+1位，第二維(層)的第b+1位
+        (3)array[:, b] 冒號代表該維度全都要
+        (4)np.array([[...]...]) 創建矩陣
+        (5)np.zeros(n) 可以創建n列矩，其值皆為0
+        (6)array.shape 可以得到array的行列數
+        (7)np.set_printoptions(formatter={'float': '{: .2e}'}) 可以把矩陣中印出的數值限制在小數點後2位
+        (8)(a*b).sum(axis=1) 把a, b兩陣列元素對元素相乘後相加,axis=1表水平加總，0表垂直
+    11.特徵縮放:多元回歸不同的特徵值的範圍不一樣(ex:0<x1<10, -100<x2<100)，這會導致其特徵所對應的斜率在學習的過程中走的不一樣快
+       這會降低找到睡點的速度。
+        解決方法:標準化，xi = (xi-mean)/SD
+            from sklearn.preprocessing import StandardScaler
+
+            scaler = StandardScaler()
+            scaler.fit(x_train)
+            x_train = scaler.transform(x_train)
+            x_test = scaler.transform(x_test)
+    12.關於深度學習工具pytorch
+        x = torch.tensor(可以放數字, list, array)    torch是一個存放資料的地方
+        x.ndim                                      可以取得tensor的維度
+        x.shape                                     可以取得各維度有幾個值
+        x = torch.rand(n, m, ...)                   可以創建shape為[n, m, ...]的隨機tensor
+        torch.manual_seed(n)                        固定每一次生成的隨機tensor，以防每次執行或是跑迴圈時有差異
+        x = torch.zeros(n, m, ...)                  可以創建shape為[n, m, ...]的tensor其每個值皆為0
+        x = torch.ones(n, m, ...)                   可以創建shape為[n, m, ...]的tensor其每個值皆為1
+        x = torch.arange(n, m, d)                   可以創建n~m間隔為d的list
+        torch.tensor(, 
+                        dtype= ,                    設定此tensor資料型態
+                        device= ,                   設定把資料放在神裝置上(cpu, gpu)
+                        requires_grad= )            設定是否追蹤梯度(可幫助微分)
+        x[n][m][.]...[.]                            取值
+        x (+/-/*///%) y                             1對tensor做運算，所有值都會一起運算
+        torch.matmul(x, y)                          矩陣相乘
+        x.T                                         矩陣轉置
+        x.reshape(n, m)                             將shape轉換為n*m但要注意轉換前的資料總數一定要是n*m
+            n或m寫-1會自油調配該維度大小
+        torch.from_numpy(array)                     可以把numpy的矩陣轉換成torch的tensor
+        x.numpy()                                   可以把torch的tensor轉換成numpy的矩陣
+    
+    其他:
+        np.where(判斷條件, True的回傳值, False的回傳值)       針對布林值有不一樣的回傳值
+        (a == b).sum()                                       a = b的次數
+
+引入字體:
+    import matplotlib as mlp
+    from matplotlib.font_manager import fontManager
+    import wget
+
+    wget.download("https://github.com/GrandmaCan/ML/raw/main/Resgression/ChineseFont.ttf")
+
+    fontManager.addfont("ChineseFont.ttf")
+    mlp.rc('font', family="ChineseFont")
+互動原件:
+    from ipywidgets import interact
+    interact(函式, 參數1, 參數2, ...)
+創建矩陣:
+import numpy as np
+
+    ws = xp.arange(a, b)
+    bs = yp.arange(c, d)
+    costs = np.zeros((b-a,d-c))
+
+機器學習:
+    A.簡單線性迴歸y = wx + b:表示樣本對應關係的最適直線
+        1.定義最適值線:min error，也就是min sum((y_pred-y)^2)
+        2.y_pred-y也叫做"cost function"
+        3.y_pred = w*x + b => cost function = (w*x + b - y)^2
+        4.找最適的方式:(使誤差最小的w, b)
+            (1)列舉找最小:列舉w,b可能範圍所有的cost然後找最小的
+            (2)gradient descent:從隨機一個位置開始，慢慢往下找出一次微分等於0的點
+                方法:(不斷算出斜率，更新w, b)
+                cost_b'= 2 (w*x+b-y)      對b微分
+                cost_w'= 2 (w*x+b-y)*x    對w微分
+                b -= 斜率(b)*學習率
+                w -= 斜率(w)*學習率
+                #學習率:往下走的步伐大小，不能太大！
+        5.得到最適w, b後就可以帶入原式進行預測了
+    B.多元線性迴歸y = w1x + w2x + ... + b
+        同簡單線性迴歸
+    C.邏輯斯回歸:(用在分類問題，當今天預測的y值為有限的時候使用)
+        1.sigmoid function:(會把原本的直線彎曲)
+            令 z = w1x + w2x + ... + b
+            sigmoid function = y_pred = 1/(1+e^(-z)) = 1/(1+e^-(w1x + w2x + ... + b))
+        2.cost function用binary cross entropy:
+            cost = -log(y_pred), if y = 1
+                 = -log(1-y_pred), if y = 0
+            =>cost = -y*log(y_pred) - (1-y)*log(1-y_pred)
+        3.找最適，找法跟上面一樣
+        補充:(sklearn模組可以直接幫我們做邏輯斯回歸)
+            from sklearn.linear_model import LogisticRegression
+            lg_model = LogisticRegression()
+            lg_model.fit(x_train, y_train)
+            y_pred = lg_model.predict(x_test)
+        補充:(sklearn的力量，只要是sklearn有的數學模型，只要這樣寫都可以自動幫我們做ML)
+            from sklearn.數學模型 import 模型模組名稱
+            model = 模型模組名稱()
+            model.fit(x_train, y_train)
+            y_pred = model.predict(x_test)
+            (可以上網搜尋scikit learn找尋sklearn裡的數學模型有哪些)
+
+深度學習:
+    **輸入層--->隱藏層--->輸出層
+      (輸入)    (轉換)    (輸出)
+    **數學角度:多條線性函數--->線性轉換(激勵函數)後相加，形成貼近資料分布的函數--->輸出結果
+    **可利用python第三方套件pytorch進行深度學習
+    **一層到另一層之前都會經過一個激勵函數activation function
+    **深度學習其實是很多複雜的線性迴歸所構成
+    **常見激勵函數:sigmoid(二元分類), ReLU(預測不可能為負), Tanh(), softmax(多元分類)
+    **隱藏層常用ReLU
+    **不同的激活函數、層數、神經元都會影響準確度
+    **模型表現不好的原因:
+        (1)欠擬合underfitting，在訓練集及測試集的表現皆不好
+            **判斷方式:畫出cost圖，訓練集以及測試集的cost都還可以在更低
+            **解決方法:增加學習率、增加epoch、增加模型複雜度
+        (2)過擬合overfitting，在訓練集的表現很好，但在測試集的表現不好
+            **判斷方式:畫出cost圖，訓練集比測試集低很多
+            **解決方法:蒐集更多資料、簡化模型、提早停止訓練，data augmentation(對原資料做轉換創造更多資料)
+        (1)建立一個模型的分類:(ex:SLR)
+            from torch import nn
+
+            class LinearRegressionModel(nn.Module): <------------繼承nn.Module
+                def __init__(self):
+                    super().__init__()              <------------初始化nn.Module的參數
+                    self.w = nn.Parameter(torch.rand(1, requires_grad=True))
+                    self.b = nn.Parameter(torch.rand(1, requires_grad=True))
+
+                def forward(self, x):         <------------------一定要有一個名叫foward的函數！
+                    return self.w*x + self.b  <------------------SLR的模型
+
+            補充:list(model.parameters()) or model.stat_dict() 可以得到模型的參數值
+        (2)讀取資料後要先轉換成numpy形式在轉換成torch形式
+        (3)呼叫class的foward函數這樣寫:
+            model = LinearRegressionModel()                                     創建一個物件
+            y_pred = model(x)                                                   呼叫foward函數
+        (4)cost function寫法:pytorch官網--->Docs--->網頁左邊點擊torch.nn--->
+        點擊Loss Funcitons--->找到cost funtion想要的算法，複製其套件名稱
+        (ex:nn.MSELoss() 線性cost, nn.BCELoss() logistic cost)
+        (5)optimizer寫法:pytorch官網--->Docs--->網頁左邊點擊torch.optim--->
+        找到Algorithms--->找到optimizer想要的算法，複製其套件名稱
+        (ex:torch.optim.SGD(params=model.parameters(), lr=0.001), torch.optim.Adam(params=model.parameters(), lr=0.001))
+        (6).常見錯誤:
+            a.兩矩陣無法相乘，ex:n*m 跟 n*m相乘，要把其中一個矩陣變成m*n才能乘(用矩陣.reshape)
+            b.兩資料運算資料型態不，要換成一樣的(用data.type(資料型態))
+        (7)優化模型，更新斜率, 截距:
+            optimizer.zero_grad()                                               因為追蹤梯度的功能會把每一次計算的斜率疊加，所以每一次計算前要先歸零
+            cost.backward()                                                     微分
+            optimizer.step()                                                    更新
+        (8)重複更新，找最適
+            for epoch in range(epochs):
+                model.train()                                                   訓練階段要寫這個
+                y_pred = model(x_train)
+                train_cost = cost_fn(y_pred, y_train)
+                optimizer.zero_grad()
+                train_cost.backward()
+                optimizer.step()
+                train_cost_hist.append(train_cost.detach().numpy())
+
+                model.eval()                                                   測試階段要寫這個
+                with torch.inference_mode():                                   這樣寫就只會跑測試階段的程式，不會跑上面訓練的程式
+                    test_pred = model(x_test)
+                    test_cost = cost_fn(test_pred, y_test)
+                    test_cost_hist.append(test_cost)
+
+                if epoch % 10 == 0:
+                    print(f"Epoch: {epoch:5}, Train Cost: {train_cost: 2e}, Test Cost: {test_cost: 2e}")
+        (9)儲存模型參數:
+            torch.save(obj=model.state_dict(), f="儲存位置")
+        (10)載入模型參數:
+            model_load = LinearRegressionModel()
+            model_load.load_state_dict(torch.load(f="檔案位置"))
+            model_load.state_dict()
+        (11)建立模型也可以這樣寫:
+            class LinearRegressionModel(nn.Module):
+                def __init__(self):
+                    super().__init__()
+                    self.linear_layer = nn.Linear(in_features=1, out_features=1, bias=True, dtype=torch.float64)   --->in_features是特徵x的數量(輸入層)，out_features是輸出
+                                                                                                                    y的數量(輸出層)bias指的是b，True會+b，False不會+b
+                def forward(self, x):
+                    return self.linear_layer
+        (12)連線GPU做ML會比較快:
+                !nvidia-smi                                                                        檢查colab提供的GPU是哪張
+                torch.cuda.is_available()                                                          檢查是否有連線到此張GPU
+                torch.cuda.device_count()                                                          檢查共連線了幾張GPU
+                devi = "cuda" if torch.cuda.is_available() else "cpu"                              設定裝置
+                tensor = torch.tensor([1, 2, 3], device=devi) or tensor = tensor.to(devi)          讓資料連線到裝置
+                model_3 = model_3.to(devi)                                                         讓模型連線到裝置
+                注意:要將資料轉換成numpy要把資料設定在CPU才能
+                    ==> data.cpu().detach().numpy()
+
+    圖像辨識:電腦眼中的圖片就是一對數字而已
+        **圖片=像素&顏色=height*width*channel and RGB ===>一張圖片有height*width*3(RGB)個數字(特徵x)
+        RGB的亮度在(0, 255)之間，channel指的是用幾層顏色疊出圖片
+        **利用類神經網路可以讓電腦辨識圖片
+        **辨識圖像的類神經網路的輸出不只一個並且我們會像要所有的輸出是機率的概念(介於0~1, 加起來等於1)
+        透過softmax function=e(zi)/(e(z1)+e(z2)+...)可以達成
+        **cost function為cross entropy==>cost = -y1*log(y1_pred)+-y2*log(y2_pred)+...
+        詳細code在google colab
+    不同種類的神經網路層:
+        (1)全連接層fully connected layer:神經元會看過所有特徵，把上一層每個神經元與下一層每個神經相連(nn.Linear)
+        (2)卷積層convolutional layer:常用於影像，將圖片分割，讓神經元僅看過一部分的特徵侯移動到下一部分特徵，訓練filter(w, b)，檢驗圖片
+                                     的某一部分是否有符合filter，可以有很多filter
+            **一些名詞:kernal size部分特徵大小, padding超出特徵範圍補齊的大小, stride每次移動距離
+            **max pooling:減少特徵使參數減少更好訓練
+                跟捲基層作法很像，也會有個框框kernal size(2*2)、padding、stride(2)，不同的是max pooling會把框框中數值最大的特徵留下其餘刪掉
+            **可以去CNN explainer玩一下
+            **卷積神經網路convolutional neural network:多層的卷積層
+    利用CNN-VGG做圖像辨識:
+        圖像--->  卷積層  --->ReLU--->  卷積層  --->ReLU--->max pooling--->  卷積層  --->ReLU--->  卷積層  --->ReLU--->max pooling--->全連接層--->softmax
+                kernal=3*3           kernal=3*3            kernal=2*2     kernal=3*3           kernal=3*3            kernal=2*2       
+                stride=1             stride=1              stride=2       stride=1             stride=1              stride=2
+                padding=1            padding=1             padding=0      padding=1            padding=1             padding=0
+                filter=8             filter=8                             filter=16            filter=16             
+                (28*28*8)            (28*28*8)             (14*14*8)      (14*14*16)           (14*14*16)            (7*7*16)
+    自製dataset:
+        要建立一個dataset的class，這個classes須具備:資料路徑、分別取出訓練集以及測試集路徑、取得輸出(y或稱類別classes)、將輸入的圖片轉(transform)為符合格式的圖片、
+        get item輸出轉換好的圖片、get len可以取得此物件長度
+    遷移學習:
+        利用先人訓練好的模型套用到自己欲處理的資料(任務要相同)
+        **改變最後一層的輸出就好，其他層(特徵提取)都要鎖住
+        **微調fune-tuning:調整最後幾層

@@ -163,6 +163,7 @@
 #         取得方式:list名稱[2][key]
 #     9.回傳所有keys:字典名稱.keys() 注意回傳結果不是list
 #     10.回傳所有values:字典名稱.values() 注意回傳結果不是list
+# array跟array運算會一一對應運算喔(ex:[1, 2, 3, 4]*[1, 2, 3, 4] = [1, 4, 9, 16])
 # 區域變數:函式內部的變數，只有函式內有效，函式外無效
 #     1.函式與函式之間的變數名稱相同不會怎麼樣
 #     2.一般而言，函數內部對全域變數做修改，此全域變數對於函數外部來說不變
@@ -421,6 +422,7 @@
 #            pygame.quit()          關閉遊戲
 # font = pygame.font.Font("",n) 引入字體(字體檔案, 大小)
 # text = font.render("", True, (rbg)) 訊息內容(內容, 是否要抗鋸齒, 顏色)
+#       內容型態必需是str
 # window.blit(text,(x, y)) 把訊息畫出來
 # img = pygame.image.load("圖片路徑")   引入圖片
 # img = pygame.transform.scale(img, (width, height))  把img調整成(width, height)
@@ -453,3 +455,106 @@
 # elif event.type == pygame.MOUSEMOTION:
 #    print(event.pos)                       可以偵測"移動中"滑鼠位置
 # pygame.mouse.get_pos()    可以持續偵測滑鼠不論有沒有移動
+# 取得物件的x, y座標這樣寫就好self.rect.x or self.rect.y
+# pygame.sprite.groupcollide(group1, group2, False, False) 如果group1碰到group2會回傳有值的字典
+# ，沒撞到的話就會回傳空字典，後面兩個布林值會判斷要不要被碰到的物件刪掉
+# 取得群組中物件資料(型態為列表):group.sprites()
+# group.sprites()[i].rect.right 群組中第i個物件座標
+# 列表進階用法:
+#    1.list[a:b] 取得列表第a到第b-1筆資料
+#    2.[:a] 從第0位開始；[a:] 取到最後一位
+#    3.str[a:b] 取得字串第a到第b-1筆資料
+#    4.[i+n for i in list if 判斷條件] 可以把列表中每一筆符合判斷條件的數據都加n
+# 字典進階用法:
+#    1.dict.item()回傳字典中所有(key:value) 型態為元組
+#    2.用for迴圈可以把key跟value分離:
+#        for keys, values in dict.items(): key就會都在keys裡；value都會在values裡
+#    3.4.{keys:value + n for keys, values in dict.items() if 判斷條件} 可以把字典中每個符合判斷條件的value都加n, key不變
+# pandas數據分析超重要的第三方套件
+# data = pandas.read_csv("檔名") 可以讀取CSV檔
+# data["column名稱"] 可以讀取此column的所有值
+# data["column名稱"].sum() 可以把此column的所有值相加
+# data["column名稱"].max() 可以取此column最大值
+# data["column名稱"].min() 取最小值
+# data["column名稱"].mean() 取平均
+# data["column名稱"].map({特定資料: 其覆寫資料, ...}) 可以取得特定資料並將其覆寫
+# data[["column1", "column2", ...]] 可以讀取很多column的所有值
+# data[a:b] 取得第a行到第b-1行
+# data[["column1", "column2", ...]][a:b] 取得多列的第a行到第b-1行
+#    data[a:b][["column1", "column2", ...]] 反過來也可以
+# column可以轉換成列表或字典: data["column名稱"].to_list()/to_dict()
+# row只能轉換成字典data: [a:b].to_dict()
+# data[data["column"] ==/</> "想要的資料條件"] 取得某列符合條件的資料
+# data[(data["column"] ==/</> "想要的資料條件") & / | (data["column"] ==/</> "想要的資料")] 可以有多個判斷
+#    & = and, | = or
+# sort_values(by="column") 會把資料由小排到大
+# sort_values(by="column", ascending = False) 由大排到小
+# data.to_csv("檔名", encoding=utf_8_sig, index=False) 會把資料輸出到檔案
+#    index=False會把原本第幾row的數字拿掉
+# 直接對data["column名稱"]運算，column內所有值都會進行相同的運算，但不會覆蓋原資料
+# data["column名稱"] = data["column名稱"]運算    這樣才會把資料覆蓋
+# data["column名稱"].astype(資料型態)    改變整列資料型態
+# data["不存在的column"] = 某值    新增新的column
+# data.groupby("column1").max()   把column1不同的資料分組並取得各組所有column的最大值
+# data.groupby("column1")["column2", "column3", ...] 分組後只取得column2, column3, ...
+# data.drop(["column", ...], axis=0or1) 刪除column，axis=1表刪的是列，0是行
+# API是別人的電腦寫好的功能包裝起來公開給其他人使用(常常包裝成網址的型式)
+# 要使用API必須發送請求，使用第三方套件request
+# 請求方法:res = req.get("https:// + base URL + API網址")
+# 獲取回應訊息:res.text 型式為字串
+# res.json() 會以json格式回傳，比較好用
+# pandas的兩個型態:
+#    1.2維資料為DataFrame
+#    2.1維資料為Series (一行 or 一列)
+# pandas.Series([list]) 把list轉換成Series
+# pandas.DataFrame(字典)
+#    其字典形態要長這樣:{"key1": [], "key2": [], ...}
+#    或是:[{key11: value11, key12: value12, key13: value13}
+#        ,{key21: value21, key22: value22, key23: value23}
+#        ,{key31: value31, key32: value32, key33: value33}
+#        , ...]
+# 第三方套件schedule可以排程，也就是讓程是在特定時間執行
+# schedule.every().second.do(函式) 設定每秒執行一次函式，但還不會執行
+# schedule.every(n).seconds.do(函式) 設定每n秒執行一次函式
+# schedule.every(n).minites.do(函式) 設定每n分執行一次函式
+# schedule.every(n).minites.at(":m").do(函式) 設定每n分m秒執行一次函式
+# schedule.every(n).hours.do(函式) 設定每n小時執行一次函式
+# schedule.every(n).hours.at("m:s").do(函式) 設定每n小時m分s秒執行一次函式
+# schedule.every(n).days.do(函式) 設定每n天執行一次函式
+# schedule.every(n).hours.at("m:s:t").do(函式) 設定每n天m小時s分t秒執行一次函式
+# schedule.every(n).sunday.at("hh:mm:ss").do(函式) 設定每個禮拜幾的hh小時mm分ss秒執行
+# schedule.run_pending()搭配while迴圈 重複執行設定的排程
+# 但是while迴圈會執行很多次，但可能真正執行只有一次，為了避免浪費電腦效能，可以這樣:
+# import time，在迴圈內利用time模組的time.sleep(n)，這樣成功執行一次後就會休息n秒
+# 完整寫法舉例:
+#    schedule.every(n).seconds.do(函式, 參數)
+#       while True:
+#           schedule.run_pending()
+#           time.sleep(n)
+# 取得目前現在的日期與時間:
+#    localtime = time.localtime()
+#    result = time.strftime("%Y-%m-%d %I-%M-%S", localtime)
+# 如果發送請求的網址需要填寫參數:
+#    param = {
+#               "Authorization": "CWA-4AACA9C2-1736-4C80-9658-9C64938B1C1A",
+#               "locationName": "新竹縣",
+#               "elementName": "PoP"
+#           }
+#    res = req.get("網址", params=param)
+# 發送信件可以用
+#    import email.message
+#    import smtplib
+#    
+#    my_email = "email_1"
+#    password = "密碼" 密碼要去信箱的應用程式密碼取得
+# 建立信件:
+#    msg = email.message.EmailMessage() 創建信件
+#    msg["From"] = my_email 設定信件發送位置
+#    msg["To"] = "email_2"
+#    msg["Subject"] = "信件主旨"
+#    msg.set_content("第一封信件")
+# 連線伺服器，從python發送信件:
+#    connection = smtplib.SMTP_SSL("伺服器") 連線送件信相的伺服器(上網搜尋yahoo/google信箱伺服器)
+#    connection.login(my_email, password) 登入
+#    connection.send_message()
+#    connection.close()

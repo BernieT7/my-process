@@ -1,7 +1,7 @@
 # 這是一個自動單字練習機
 import random
 
-# 題庫
+# 題庫 
 eng_dic = {
     "蘋果": "apple",
     "香蕉": "banana",
